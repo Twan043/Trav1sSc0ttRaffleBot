@@ -21,6 +21,7 @@ class Raffle:
     def __init__(self, taskJSON, taskNum):
         self.taskNum = taskNum
         self.email = taskJSON["email"]
+        self.size = taskJSON["size"]
 
     def enter(self):
         s = requests.Session()
@@ -51,6 +52,7 @@ class Raffle:
                 response = s.get('https://shop.travisscott.com/', proxies=proxyDict)
             except Exception as e:
                 print(e)
+                time.sleep(delay)
             if response.status_code == 200:
                 log('Succesfully got raffle page', 3)
                 break
@@ -65,7 +67,7 @@ class Raffle:
                 while '9' in n[3:6] or n[3:6]=='000' or n[6]==n[7]==n[8]==n[9]:
                     n = str(random.randint(10**9, 10**10-1))
                 phone = n[:3] + '-' + n[3:6] + '-' + n[6:]
-                response = s.get(f'https://f1eb5xittl.execute-api.us-east-1.amazonaws.com/fragment/submit?a=m&email={self.email}&first={first}&last={last}&zip={zip}&telephone={phone}&product_id=6732003639423&kind=shoe&size=10.5', proxies=proxyDict)
+                response = s.get(f'https://f1eb5xittl.execute-api.us-east-1.amazonaws.com/fragment/submit?a=m&email={self.email}&first={first}&last={last}&zip={zip}&telephone={phone}&product_id=6732003639423&kind=shoe&size={self.size}', proxies=proxyDict)
             except Exception as e:
                 print(e)
                 time.sleep(delay)
