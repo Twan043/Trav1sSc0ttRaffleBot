@@ -17,13 +17,13 @@ def log(message, color):
     print(f'%s[{now}] [Travis Scott Raffle] [Task-{taskNum}] {message}%s' % (fg(color), attr(0)))
 
 
-class Checkout:
+class Raffle:
 
     def __init__(self, taskJSON, taskNum):
         self.taskNum = taskNum
         self.email = taskJSON["email"]
 
-    def login(self):
+    def enter(self):
         s = requests.Session()
         log('Starting task', 45)
 
@@ -102,4 +102,4 @@ for task in task_reader:
         continue
     else:
         taskNum = str(task_reader.line_num - 1)
-        Thread(target=Checkout(task, taskNum).login).start()
+        Thread(target=Raffle(task, taskNum).enter).start()
