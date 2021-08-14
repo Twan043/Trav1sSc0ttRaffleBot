@@ -74,7 +74,7 @@ class Raffle:
             else:
                 try:
                     if 'thanks' in response.text:
-                        log('Succesfully entered raffle')
+                        log('Succesfully entered raffle', 120)
                         break
                 except Exception as e:
                     print(e)
