@@ -28,7 +28,7 @@ class Raffle:
 
         while True:
          try:
-             lines = open('Travis/proxies.txt').read().splitlines()
+             lines = open('proxies.txt').read().splitlines()
              proxy = random.choice(lines)
              split = proxy.split(':')
              good_format = (f'{split[2]}:{split[3]}@{split[0]}:{split[1]}')
@@ -95,7 +95,7 @@ delay = int(jsonObject['delay'])
 hook = jsonObject['webhook']
 
 
-task_reader = csv.DictReader(open("Travis/travis.csv", 'r'))
+task_reader = csv.DictReader(open("travis.csv", 'r'))
 for task in task_reader:
     if task_reader.line_num == 1:
         continue
