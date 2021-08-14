@@ -1,4 +1,3 @@
-from os import close
 import requests
 import csv
 import random
